@@ -46,7 +46,10 @@ jobs:
         run: |
           sudo $HOME/.local/bin/qmk config user.keyboard=crkbd/rev1/common
           sudo $HOME/.local/bin/qmk config user.keymap=snazzy
-          sudo $HOME/.local/bin/qmk json2c configurator/corne-snazzy-boi-v002.json > generated_keymap.c
+          sudo $HOME/.local/bin/qmk json2c configurator/corne-snazzy-boi.json > generated_keymap.c
+          cat snazzy/keymap.c >> generated_keymap.c
+          rm snazzy/keymap.c
+          mv generated_keymap.c snazzy/keymap.c
           sudo $HOME/.local/bin/qmk compile
       - uses: actions/upload-artifact@v2
         with:
