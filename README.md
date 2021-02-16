@@ -1,4 +1,4 @@
-# Corne Layout - Snazzy-Boi
+# Corne Layout - Snazzy
 
 Notes for getting QMK to build custom corne layout, this in no way is totally
 comprehensive or to say I am anything close to an expert. Just a easy
