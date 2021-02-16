@@ -44,11 +44,12 @@ jobs:
         run: |
           sudo $HOME/.local/bin/qmk config user.keyboard=crkbd/rev1/common
           sudo $HOME/.local/bin/qmk config user.keymap=snazzy
+          sudo $HOME/.local/bin/qmk json2c configurator/corne-snazzy-boi-v002.json > generated_keymap.c
           sudo $HOME/.local/bin/qmk compile
       - uses: actions/upload-artifact@v2
         with:
-          name: corne-snazzy-boi-default.hex
-          path: ~/qmk_firmware/crkbd_rev1_common_snazzy.hex
+          name: corne-snazzy-default.hex
+          path: qmk_firmware/crkbd_rev1_common_snazzy.hex
       - name: Release
         uses: docker://softprops/action-gh-release
         if: startsWith(github.ref, 'refs/tags/')
