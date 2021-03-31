@@ -46,7 +46,7 @@ TBD
 ## Compiling
 
 This project uses GitHub actions to build out the .hex file for flashing
-the keyboard.
+the keyboard..
 
 ## Flashing
 

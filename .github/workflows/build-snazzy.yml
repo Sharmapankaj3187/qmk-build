@@ -35,22 +35,18 @@ jobs:
       - name: chmod 
         run: chmod +x $HOME/.local/bin/qmk
       - name: Setup QMK CLI
-        run: $HOME/.local/bin/qmk setup -H $(pwd)/qmk_firmware -y
-      - name: Link custom keymap definition
         run: |
+          $HOME/.local/bin/qmk setup -H $(pwd)/qmk_firmware -y
           SB_LOCAL_PATH=$(pwd)
           echo $SB_LOCAL_PATH
-          sudo ln -s $(pwd)/snazzy $(pwd)/qmk_firmware/keyboards/crkbd/rev1/common/keymaps/snazzy
-
-      - name: Configure your Build Environment and build
-        run: |
-          sudo $HOME/.local/bin/qmk config user.keyboard=crkbd/rev1/common
-          sudo $HOME/.local/bin/qmk config user.keymap=snazzy
-          sudo $HOME/.local/bin/qmk json2c configurator/corne-snazzy-boi.json > generated_keymap.c
+          ln -s $(pwd)/snazzy $(pwd)/qmk_firmware/keyboards/crkbd/rev1/common/keymaps/snazzy
+          $HOME/.local/bin/qmk config user.keyboard=crkbd/rev1/common
+          $HOME/.local/bin/qmk config user.keymap=snazzy
+          $HOME/.local/bin/qmk json2c configurator/corne-snazzy-boi.json > generated_keymap.c
           cat snazzy/keymap.c >> generated_keymap.c
           rm snazzy/keymap.c
           mv generated_keymap.c snazzy/keymap.c
-          sudo $HOME/.local/bin/qmk compile
+          $HOME/.local/bin/qmk compile
       - uses: actions/upload-artifact@v2
         with:
           name: corne-snazzy-default.hex
