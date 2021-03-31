@@ -42,7 +42,7 @@ jobs:
           ln -s $(pwd)/snazzy $(pwd)/qmk_firmware/keyboards/crkbd/rev1/common/keymaps/snazzy
           $HOME/.local/bin/qmk config user.keyboard=crkbd/rev1/common
           $HOME/.local/bin/qmk config user.keymap=snazzy
-          $HOME/.local/bin/qmk json2c configurator/corne-snazzy-boi.json > generated_keymap.c
+          $HOME/.local/bin/qmk json2c configurator/final_pankaj.json > generated_keymap.c
           cat snazzy/keymap.c >> generated_keymap.c
           rm snazzy/keymap.c
           mv generated_keymap.c snazzy/keymap.c
